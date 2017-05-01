@@ -22,10 +22,14 @@ namespace PrestigeWorldwide.Models
         public string IATACode { get; set; }
         public string LocalCode { get; set; }
 
+       
+
+        /*
         [InverseProperty("From_Airport")]
         public ICollection<Itinerary> From_Itineraries { get; set; }
 
         [InverseProperty("To_Airport")]
         public ICollection<Itinerary> To_Itineraries { get; set; }
+        */
     }
 }

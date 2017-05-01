@@ -40,7 +40,7 @@ namespace PrestigeWorldwide.Controllers
             return (Math.PI / 180) * val;
         }
 
-        private int CalcDistance(Position pos1, Position pos2, String DistanceType)
+        public int CalcDistance(Position pos1, Position pos2, String DistanceType)
         {
             double R = (DistanceType.Equals("Miles")) ? 3960 : 6371;
 

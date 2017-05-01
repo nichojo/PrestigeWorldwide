@@ -1,6 +1,6 @@
 ﻿namespace PrestigeWorldwide.Controllers
 {
-    internal class Position
+    public class Position
     {
         public Position(double latitude, double longitude)
         {

@@ -4,7 +4,8 @@ using System.Linq;
 using System.Net;
 using System.Web.Mvc;
 using System;
-
+using System.Net.Http;
+using System.Net.Http.Headers;
 
 namespace PrestigeWorldwide.Controllers
 {
@@ -39,6 +40,7 @@ namespace PrestigeWorldwide.Controllers
             {
                 return HttpNotFound();
             }
+                       
             return View(itinerary);
         }
 
@@ -55,6 +57,21 @@ namespace PrestigeWorldwide.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "User,From_Airport,To_Airport,Description,Name")] Itinerary itinerary)
         {
+            DistanceController distanceLogic = new DistanceController();
+
+            Airport fromAirport = db.Airports
+                        .Where(i => i.Ident.Equals(itinerary.From_Airport))
+                        .First();
+
+            Airport toAirport = db.Airports
+                        .Where(i => i.Ident.Equals(itinerary.To_Airport))
+                        .First();
+
+            Position fromPosition = new Position(fromAirport.Latitude, fromAirport.Longitude);
+            Position toPosition = new Position(toAirport.Latitude, toAirport.Longitude);
+
+            itinerary.Distance = distanceLogic.CalcDistance(fromPosition, toPosition, "Miles");
+
             if (ModelState.IsValid)
             {
                 db.Itineraries.Add(itinerary);

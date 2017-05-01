@@ -217,6 +217,14 @@
     <Compile Include="Migrations\201705010553025_starthere.Designer.cs">
       <DependentUpon>201705010553025_starthere.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705010615376_refine-relationship.cs" />
+    <Compile Include="Migrations\201705010615376_refine-relationship.Designer.cs">
+      <DependentUpon>201705010615376_refine-relationship.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705010731382_b4auto.cs" />
+    <Compile Include="Migrations\201705010731382_b4auto.Designer.cs">
+      <DependentUpon>201705010731382_b4auto.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Aero.cs" />
@@ -305,6 +313,7 @@
     <Content Include="Views\Airport\Details.cshtml" />
     <Content Include="Views\Airport\Edit.cshtml" />
     <Content Include="Views\Airport\Index.cshtml" />
+    <Content Include="Views\Home\Australia.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -328,6 +337,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201705010553025_starthere.resx">
       <DependentUpon>201705010553025_starthere.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705010615376_refine-relationship.resx">
+      <DependentUpon>201705010615376_refine-relationship.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705010731382_b4auto.resx">
+      <DependentUpon>201705010731382_b4auto.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

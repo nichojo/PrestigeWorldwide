@@ -16,8 +16,16 @@ namespace PrestigeWorldwide.Models
         [StringLength(50)]
         public string User { get; set; }
 
+        /*
         public Airport From_Airport { get; set; }
         public Airport To_Airport { get; set; }
+        */
+        [Required]
+        [StringLength(50)]
+        public string From_Airport { get; set; }
+        [Required]
+        [StringLength(50)]
+        public string To_Airport { get; set; }
 
         [StringLength(50)]
         public string Description { get; set; }
@@ -25,5 +33,8 @@ namespace PrestigeWorldwide.Models
         [Required]
         [StringLength(50)]
         public string Name { get; set; }
+
+        [Required]
+        public int Distance { get; set; }
     }
 }
