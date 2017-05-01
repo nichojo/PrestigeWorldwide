@@ -1,0 +1,121 @@
+﻿@model PrestigeWorldwide.Models.Airport
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Airport</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Ident)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ident)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Type)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Latitude)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Latitude)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Longitude)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Longitude)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Continent)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Continent)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ISOCountry)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ISOCountry)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ISORegion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ISORegion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GPSCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GPSCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Municipality)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Municipality)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Serviced)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Serviced)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IATACode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IATACode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LocalCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LocalCode)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.AirportId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
