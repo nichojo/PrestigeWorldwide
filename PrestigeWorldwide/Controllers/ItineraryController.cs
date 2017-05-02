@@ -1,11 +1,12 @@
-﻿using PrestigeWorldwide.Models;
+﻿using Microsoft.AspNet.Identity;
+using PrestigeWorldwide.Models;
+using System;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
-using System;
-using System.Net.Http;
-using System.Net.Http.Headers;
+using PrestigeWorldwide.ViewModels;
+using System.Collections.Generic;
 
 namespace PrestigeWorldwide.Controllers
 {
@@ -13,19 +14,11 @@ namespace PrestigeWorldwide.Controllers
     {
         private AeroDbContext db = new AeroDbContext();
 
-        // GET: Itineraries/user
-        public ActionResult Index(string user)
+        // GET: Itineraries
+        public ActionResult Index()
         {
-            if (String.IsNullOrEmpty(user))
-                return View(db.Itineraries.ToList());
-            else
-            {
-                return View(
-                    db.Itineraries
-                        .Where(i => i.User.Equals(user))
-                        .ToList(
-                        ));
-            }
+            string user = User.Identity.GetUserName();
+            return View(db.Itineraries.Where(i => i.User.Equals(user)).ToList());
         }
 
         // GET: Itineraries/Details/5
@@ -35,13 +28,14 @@ namespace PrestigeWorldwide.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Itinerary itinerary = db.Itineraries.Find(id);
-            if (itinerary == null)
-            {
-                return HttpNotFound();
-            }
-                       
-            return View(itinerary);
+
+            var viewModel = new ItineraryIndexData();
+            viewModel.Itinerary = db.Itineraries.Where(i => i.Id == id).First();
+            viewModel.ItineraryRoutes = db.ItineraryRoutes.Where(i => i.ItineraryId == id);
+
+            ViewBag.ItineraryName = viewModel.Itinerary.Name;
+
+            return View(viewModel);
         }
 
         // GET: Itineraries/Create
@@ -55,23 +49,9 @@ namespace PrestigeWorldwide.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "User,From_Airport,To_Airport,Description,Name")] Itinerary itinerary)
+        public ActionResult Create([Bind(Include = "FromLocation,ToLocation,Description,Name")] Itinerary itinerary)
         {
-            DistanceController distanceLogic = new DistanceController();
-
-            Airport fromAirport = db.Airports
-                        .Where(i => i.Ident.Equals(itinerary.From_Airport))
-                        .First();
-
-            Airport toAirport = db.Airports
-                        .Where(i => i.Ident.Equals(itinerary.To_Airport))
-                        .First();
-
-            Position fromPosition = new Position(fromAirport.Latitude, fromAirport.Longitude);
-            Position toPosition = new Position(toAirport.Latitude, toAirport.Longitude);
-
-            itinerary.Distance = distanceLogic.CalcDistance(fromPosition, toPosition, "Miles");
-
+            itinerary.User = User.Identity.GetUserName();
             if (ModelState.IsValid)
             {
                 db.Itineraries.Add(itinerary);
@@ -81,6 +61,7 @@ namespace PrestigeWorldwide.Controllers
 
             return View(itinerary);
         }
+
 
         // GET: Itineraries/Edit/5
         public ActionResult Edit(int? id)

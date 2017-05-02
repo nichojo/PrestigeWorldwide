@@ -1,0 +1,1 @@
+﻿select * from itineraryroutes join Itineraries on ItineraryRoutes.ItineraryId = Itineraries.Id

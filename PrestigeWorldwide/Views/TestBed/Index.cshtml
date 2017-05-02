@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+   
+}
+
+<h2>Index</h2>
+@using (Html.BeginForm())
+{
+    <div>From Airport :</div> @Html.TextBox("FromAirport", ViewData["FromAirport"] ?? "")
+    <div>From Airport :</div> @Html.TextBox("ToAirport", ViewData["ToAirport"] ?? "")
+    <div>Travel Date :</div> @Html.TextBox("TravelDate", ViewData["ToAirport"] ?? "", new { type = "date" })
+
+    <input type="submit" />
+
+    <div>@ViewBag.Distance</div>
+    <div>@ViewBag.TimeDif</div>
+}
+

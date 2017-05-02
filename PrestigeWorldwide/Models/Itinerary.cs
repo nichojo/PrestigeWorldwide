@@ -1,18 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Web;
 
 namespace PrestigeWorldwide.Models
 {
     public class Itinerary
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         [Required]
+        [StringLength(50)]
+        public string Name { get; set; }
+
+        [StringLength(50)]
+        public string Description { get; set; }
+
         [StringLength(50)]
         public string User { get; set; }
 
@@ -22,19 +25,13 @@ namespace PrestigeWorldwide.Models
         */
         [Required]
         [StringLength(50)]
-        public string From_Airport { get; set; }
-        [Required]
-        [StringLength(50)]
-        public string To_Airport { get; set; }
-
-        [StringLength(50)]
-        public string Description { get; set; }
+        public string FromLocation { get; set; }
 
         [Required]
         [StringLength(50)]
-        public string Name { get; set; }
+        public string ToLocation { get; set; }
 
-        [Required]
-        public int Distance { get; set; }
+        // Navigation property 
+        public virtual ICollection<ItineraryRoute> ItineraryRoute { get; set; }
     }
 }

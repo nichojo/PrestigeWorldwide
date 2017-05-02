@@ -21,11 +21,24 @@ namespace PrestigeWorldwide.Controllers
         // GET: Prefixed Ident or Name
         public JsonResult Search(String Prefix)
         {
+
             var AirportName = db.Airports
                         .Where(i => i.Name.Contains(Prefix) || i.Ident.Contains(Prefix))
                         .Where(i => i.Serviced.Equals("Yes"))
-                        .Select(i => new { i.Ident, i.Name })
+                        .Where(i => i.Type.Equals("large_airport") || i.Type.Equals("medium_airport") || i.Type.Equals("small_airport"))
+                        .OrderBy(i => i.Type ) 
+                        .Select(i => new { i.Ident, i.Name }).Take(5)
                         .ToList();
+
+            return Json(AirportName, JsonRequestBehavior.AllowGet);
+        }
+
+        // GET: Prefixed Ident or Name
+        public JsonResult GetAirport(String Airport)
+        {
+            var AirportName = db.Airports
+                        .Where(i => i.Ident.Equals(Airport))
+                        .First();
 
             return Json(AirportName, JsonRequestBehavior.AllowGet);
         }

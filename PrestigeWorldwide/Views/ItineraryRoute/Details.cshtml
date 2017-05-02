@@ -1,0 +1,43 @@
+﻿@model PrestigeWorldwide.Models.ItineraryRoute
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ItineraryRoute</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Itinerary.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Itinerary.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.From_Airport)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.From_Airport)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.To_Airport)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.To_Airport)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

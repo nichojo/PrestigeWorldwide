@@ -6,6 +6,6 @@ namespace PrestigeWorldwide.Models
     {
         public DbSet<Airport> Airports { get; set; }
         public DbSet<Itinerary> Itineraries { get; set; }
+        public DbSet<ItineraryRoute> ItineraryRoutes { get; set; }
     }
-
 }

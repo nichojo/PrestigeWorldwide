@@ -1,4 +1,4 @@
-﻿@model PrestigeWorldwide.Models.Itinerary
+﻿@model PrestigeWorldwide.ViewModels.ItineraryIndexData
 
 @{
     ViewBag.Title = "Details";
@@ -7,53 +7,38 @@
 
 <h2>Details</h2>
 
+<h3>Itinerary - @ViewBag.ItineraryName</h3>
 <div>
-    <h4>Itinerary</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.User)
-        </dt>
+    <p>
+        @Html.ActionLink("Create New", "Create", new { controller = "ItineraryRoute", Model.Itinerary.Id})
+    </p>
+    <table class="table">
+        <tr>
+            <th>From Airport</th>
+            <th>To Airport</th>
+            <th>Distance</th>
+            <th></th>
+        </tr>
+    
+        @foreach (var item in Model.ItineraryRoutes)
+        {
+            <tr class="">
+                <td>
+                    @Html.DisplayFor(modelItem => item.From_Airport)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.To_Airport)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Distance)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { controller = "ItineraryRoute", item.Id }) |
+                    @Html.ActionLink("Details", "Details", new { controller = "ItineraryRoute", item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { controller = "ItineraryRoute", item.Id })
+                </td>
+            </tr>
+        }
+    </table>
 
-        <dd>
-            @Html.DisplayFor(model => model.User)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.From_Airport)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.From_Airport)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.To_Airport)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.To_Airport)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-
-    </dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
